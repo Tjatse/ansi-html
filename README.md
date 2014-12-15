@@ -29,7 +29,7 @@ console.log('[HTML]', ansiHTML(str));
 See complete examples under `test` / `examples` directory.
 
 # Exposed Tags
-```
+```javascript
 var openTags = ansiHTML.tags.open;
 var closeTags = ansiHTML.tags.close;
 ```

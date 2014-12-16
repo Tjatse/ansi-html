@@ -58,7 +58,7 @@ function ansiHTML(text){
   // Cache opened sequence.
   var ansiCodes = [];
   // Replace with markup.
-  return text.replace(/\033\[(\d+)*m/g, function(match, seq){
+  var ret = text.replace(/\033\[(\d+)*m/g, function(match, seq){
     var ot = openTags[seq];
     if (ot) {
       // If current sequence has been opened, close it.
@@ -79,6 +79,12 @@ function ansiHTML(text){
     }
     return '';
   });
+
+  // Make sure tags are closed.
+  var l = ansiCodes.length;
+  (l > 0) && (ret += Array(l + 1).join('</span>'));
+
+  return ret;
 }
 
 /**

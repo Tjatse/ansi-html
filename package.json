@@ -1,6 +1,6 @@
 {
   "name": "ansi-html",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An elegant lib that converts the chalked (ANSI) text to HTML.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "chalk": "~0.5.1",
+    "chalk": "~1.1.1",
     "mocha": "^1.21.4",
     "chai": "^1.9.1",
     "lodash": "~2.4.1"

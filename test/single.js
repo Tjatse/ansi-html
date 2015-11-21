@@ -23,7 +23,7 @@ delete fns['gray'];
 
 var txt = 'ansi-html';
 
-describe('chaining', function(){
+describe('single', function(){
   for (var key in fns) {
     it(key, function(){
       var fn = fns[key];

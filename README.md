@@ -28,6 +28,27 @@ console.log('[HTML]', ansiHTML(str));
 
 See complete examples under `test` / `examples` directory.
 
+# Set Colors
+```javascript
+ansiHTML.setColors({
+  reset: ['555', '666'], // FOREGROUND-COLOR or [FOREGROUND-COLOR] or [, BACKGROUND-COLOR] or [FOREGROUND-COLOR, BACKGROUND-COLOR]
+  black: 'aaa',	// String
+  red: 'bbb',
+  green: 'ccc',
+  yellow: 'ddd',
+  blue: 'eee',
+  magenta: 'fff',
+  cyan: '999',
+  lightgrey: '888',
+  darkgrey: '777'
+});
+```
+
+# Reset
+```javascript
+ansiHTML.reset();
+```
+
 # Exposed Tags
 ```javascript
 var openTags = ansiHTML.tags.open;

@@ -139,14 +139,20 @@ ansiHTML.reset = function(){
  * Expose tags, including open and close.
  * @type {Object}
  */
-ansiHTML.tags = {
-  get open() {
-    return _openTags;
-  },
-  get close() {
-    return _closeTags;
-  }
-};
+ansiHTML.tags = {};
+
+if (Object.defineProperty) {
+  Object.defineProperty(ansiHTML.tags, "open", {
+    get: function() { return _openTags; }
+  });
+  Object.defineProperty(ansiHTML.tags, "close", {
+    get: function() { return _closeTags; }
+  });
+} else {
+  ansiHTML.tags.open = _openTags;
+  ansiHTML.tags.close = _closeTags;
+}
+
 
 function _setTags(colors) {
   // reset all

@@ -29,7 +29,7 @@ var _styles = {
 }
 var _openTags = {
   '1': 'font-weight:bold', // bold
-  '2': 'opacity:0.8', // dim
+  '2': 'opacity:0.5', // dim
   '3': '<i>', // italic
   '4': '<u>', // underscore
   '8': 'display:none', // hidden

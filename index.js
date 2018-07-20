@@ -2,6 +2,9 @@
 
 module.exports = ansiHTML
 
+var _rgbANSI = /\[38;2;([^;]+);([^;]+);([^m]+)m(.*?)\[39m/g;
+var _bgRgbANSI = /\[48;2;([^;]+);([^;]+);([^m]+)m(.*?)\[49m/g;
+
 // Reference to https://github.com/sindresorhus/ansi-regex
 var _regANSI = /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/
 
@@ -51,6 +54,16 @@ var _closeTags = {
  * @returns {*}
  */
 function ansiHTML (text) {
+  if (_rgbANSI.test(text)) {
+    return ansiHTML(text.replace(_rgbANSI, function (match, r, g, b, txt) {
+      return `<span style="color: rgb(${r},${g},${b})">${txt}</span>`;
+    }));
+  }
+  if (_bgRgbANSI.test(text)) {
+    return ansiHTML(text.replace(_bgRgbANSI, function (match, r, g, b, txt) {
+      return `<span style="background-color: rgb(${r},${g},${b})">${txt}</span>`;
+    }));
+  }
   // Returns the text if the string has no ANSI escape code.
   if (!_regANSI.test(text)) {
     return text

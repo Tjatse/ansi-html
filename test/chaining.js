@@ -2,7 +2,6 @@ var ansiHTML = require('../')
 var chalk = require('chalk')
 var chai = require('chai')
 var expect = chai.expect
-var _ = require('lodash')
 
 var fns = {}
 Object.keys(chalk.styles).forEach(function (key) {
@@ -27,7 +26,7 @@ var txt = 'ansi-html'
 describe('chaining', function () {
   var keys = Object.keys(fns)
   for (var i = 0; i < keys.length * 5; i++) {
-    var cKeys = _.sample(keys, _.random(1, 5))
+    var cKeys = _sample(keys)
 
     var ret = {}
     cKeys.forEach(function (key) {
@@ -41,3 +40,26 @@ describe('chaining', function () {
     }.bind(ret))
   }
 })
+
+function _random (min, max) {
+  return Math.ceil(10000 * Math.random()) % max + min
+}
+
+function _sample (arr, count) {
+  if (!count) {
+    count = _random(1, 5)
+  }
+  var len = arr.length
+  var ret = []
+  for (var i = 0; i < count; i++) {
+    var seed = _random(0, len)
+    while (ret.indexOf(arr[seed]) >= 0) {
+      seed = _random(0, len)
+    }
+    const v = arr[seed]
+    if (v && ret.indexOf(v) < 0) {
+      ret.push(v)
+    }
+  }
+  return ret
+}
